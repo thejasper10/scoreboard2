@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <p *ngIf="game.id != null" >Modifica gioco</p>
+            <p *ngIf="game.id == null" >Nuovo gioco</p>
+        </ion-title>
+        <ion-buttons end>
+            <button (click)="onSubmit()">
+                <ion-icon name="checkmark"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <form [ngFormModel]="form" #f="ngForm" (ngSubmit)="onSubmit()">
+        <ion-list>
+            <ion-item>
+                <ion-label stacked>Nome</ion-label>
+                <ion-input ngControl="name" type="text" [(ngModel)]="game.name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Tipo</ion-label>
+                <ion-select ngControl="type" [(ngModel)]="game.type">
+                    <ion-option value="Points">Punti</ion-option>
+                    <ion-option value="Victories">Vittorie</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Obiettivo</ion-label>
+                <ion-input type="number" ngControl="target" [(ngModel)]="game.target"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Evento finale</ion-label>
+                <ion-select ngControl="final_event" [(ngModel)]="game.final_event">
+                    <ion-option value="Win">Vittoria</ion-option>
+                    <ion-option value="Lose">Sconfitta</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+        <button block danger *ngIf="game.id != null" (click)="removeGame()">Elimina</button>
+    </form>
+
+</ion-content>

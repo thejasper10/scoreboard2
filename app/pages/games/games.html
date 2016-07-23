@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Giochi</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <scoreb-loader *ngIf="loading"></scoreb-loader>
+  <ion-list *ngIf="!loading" show-delete="true" show-reorder="false" can-swipe="false">
+    <ion-item-sliding *ngFor="let game of games, let i = index">
+      <ion-item (click)="openGame($event, game)">
+        {{game.name}}
+      </ion-item>
+
+      <ion-item-options>
+        <button danger (click)="removeGame()"><ion-icon name="trash"></ion-icon>Delete</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <button fab primary fab-bottom fab-right (click)="addGame()">
+    <ion-icon name="add"></ion-icon>
+  </button>
+</ion-content>

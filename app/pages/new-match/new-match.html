@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Nuova partita
+        </ion-title>
+        <ion-buttons end>
+            <button (click)="onSubmit()">
+                <ion-icon name="checkmark"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list radio-group [(ngModel)]="game_id">
+        <ion-list-header secondary>
+            <ion-row>
+                <ion-col width-10>
+                    <ion-icon name="game-controller-b"></ion-icon>
+                </ion-col>
+                <ion-col width-90>Gioco</ion-col>
+            </ion-row>
+        </ion-list-header>
+        <ion-item *ngFor="let vgame of games, let i = index">
+            <ion-label>{{ vgame.name }}</ion-label>
+            <ion-radio checked="{{ i==0 }}" value="{{ vgame.id }}"></ion-radio>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-list-header>
+            <ion-row>
+                <ion-col width-10>
+                    <ion-icon name="people"></ion-icon>
+                </ion-col>
+                <ion-col width-90>Giocatori</ion-col>
+            </ion-row>
+        </ion-list-header>
+        <ion-item *ngFor="let player of players, let i = index">
+            <ion-input placeholder="Giocatore" [(ngModel)]="player.name"></ion-input>
+        </ion-item>
+    </ion-list>
+    <button clear (click)="addPlayer()">
+        Aggiungi giocatore
+        <ion-icon name="add-circle"></ion-icon>
+    </button>
+    
+</ion-content>
